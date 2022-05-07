@@ -10,11 +10,10 @@ app.get("/dashboard",(req,res)=>{
 app.get("/welcome",(req,res)=>{
     res.status(200).send("<h1>Welcome User</h1>")
 })
-
 //handling data with get request
 app.get("/search",(req,res)=>{
     const querydata=req.query
-    console.log(querydata)
+    console.log(req)
     console.log(querydata.fname,querydata.country)
     if(querydata.country==="india"){
         res.status(200).send({"status":true,"msg":"eligible"})
@@ -42,6 +41,11 @@ app.post("/signin",(req,res)=>{
     console.log(req.body)
     res.send("login successful")
 })
+app.get("/getuser",(req,res)=>{
+    console.log(req)
+    res.send({msg:"hello",timezone:"india timezone"})
+    })
+
 app.all("*",(req,res)=>{
     res.status(404).send({"msg":"404 File not Found"})
 })
