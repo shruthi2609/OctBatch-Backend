@@ -25,7 +25,7 @@ router.post("/signin",async (req,res)=>{
     }
 })
 
-
+//using statics
 router.post("/login",async (req,res)=>{
     try{
         const userdata=req.body
