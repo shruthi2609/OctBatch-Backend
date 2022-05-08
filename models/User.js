@@ -47,7 +47,8 @@ custSchema.methods.signUp=async function(){
         if(compare){
             return {msg:"logged in successfully",status:true}
         }
-        else{
+        else
+        {
        return {msg:"check your password",status:false}
         }
      }
