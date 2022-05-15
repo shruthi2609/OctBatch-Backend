@@ -1,5 +1,6 @@
 const mongoose=require("mongoose")
 const bcrypt=require("bcrypt")
+const jwt=require("jsonwebtoken")
 mongoose.connect("mongodb+srv://cram_js:test123@cluster0.zdsqd.mongodb.net/myFirstDatabase?retryWrites=true&w=majority").then((res)=>console.log("connected to db")).catch((err)=>console.log("error in establishing the connecttion"))
 //model creation
 /*const CustomerData=mongoose.model("UserList",{
@@ -43,9 +44,11 @@ custSchema.methods.signUp=async function(){
      const fetch=await CustomerData.findOne({email:uemail})
      if(fetch){
         const compare=await bcrypt.compare(upassword,fetch.password)
-     
+        
         if(compare){
-            return {msg:"logged in successfully",status:true}
+            const jwttoken=jwt.sign(uemail,"jamesbond")
+            console.log(jwttoken)
+            return {msg:"logged in successfully",status:true,token:jwttoken}
         }
         else
         {

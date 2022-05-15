@@ -8,16 +8,16 @@ router.get("/search/:email",async (req,res)=>{
     const userdata=await CustomerData.findOne({email:req.params.email})
     console.log(userdata)
     if(userdata){
-        res.status(200).send({username:userdata.username,email:userdata.email,place:userdata.country,status:true})
+        res.status(200).send({username:userdata.username,email:userdata.email,place:userdata.country,yoe:userdata.yoe})
     }
     else{
         res.status(401).send({msg:"user details not found",status:false})
     }
 })
 
-router.get("/country/:cnt",async (req,res)=>{
-   const userlist= await CustomerData.find({country:req.params.cnt})
+router.get("/emp",async (req,res)=>{
    // const userlist= await CustomerData.find({country:req.params.cnt})
+   const userlist= await CustomerData.find()
    if(userlist){
        res.status(200).send(userlist)
    }
